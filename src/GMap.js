@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PSMarker from './Marker.js'
 import GoogleMap from 'google-map-react';
 import './GMap.css'
+import Test from './utils/test'
 
 class GMap extends Component {
   constructor(){
@@ -20,6 +21,11 @@ class GMap extends Component {
       lat: 40.7398909,
       lng: -73.989497
     })
+  }
+
+  componentDidMount(){
+    Test(this)
+
   }
 
   render() {
