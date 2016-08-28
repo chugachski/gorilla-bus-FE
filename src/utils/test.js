@@ -2,7 +2,7 @@ import axios from 'axios';
 // import React, { Component } from 'react'
 
 export default function DriverTest(props){
-  let way = 'end';
+  let toSeward = true;
 
   const Route = function(){ return [
     {lat: 60.940297,lng: -149.173271},
@@ -44,47 +44,59 @@ export default function DriverTest(props){
       enRoute = new Route() // reassign enRoute
       console.log('enroute:', enRoute)
 
-      if (way === 'start'){
-        way = 'end';
+      if (toSeward === true){
+        toSeward = false;
       } else {
-        way = 'start';
+        toSeward = true;
       }
     };
-    if (way === 'end' && enRoute){
+    if (toSeward === false && enRoute){
       console.log('enroute:', enRoute.length)
-      return enRoute.shift();
+      // return enRoute.shift();
+      return {
+        coords: enRoute.shift(),
+        dir: false
+      }
       // console.log(enRoute.shift())
     };
-    if (way === 'start' && enRoute){
+    if (toSeward === true && enRoute){
       // console.log(enRoute.pop())
-console.log('enroute:', enRoute.length)
-      return enRoute.pop();
+      console.log('enroute:', enRoute.length)
+      // return enRoute.pop();
+      return {
+        coords: enRoute.pop(),
+        dir: true
+      }
     };
   };
 
   window.setInterval(function(){
-    let newPos = driving()
+    // let newPos = driving()
+    let shuttleData = driving();
+    let newPos = shuttleData.coords;
+    let currentDir = shuttleData.dir;
+
       return axios({
         method: 'PUT',
         url: 'http://localhost:3000/shuttles/666',
-        data: {new_shuttle_num: 666, new_lat: newPos.lat, new_lng: newPos.lng, new_driver_id: 2}
+        data: {new_shuttle_num: 666, new_lat: newPos.lat, new_lng: newPos.lng, new_dir: currentDir, new_driver_id: 2}
       }).then(function(response){
         console.log(response);
       });
 
-  }, 2000);
+  }, 4000);
 
   window.setInterval(function(){
-
       return axios.get('http://localhost:3000/shuttles/666').then(function(response){
         props.setState({
           lat: response.data[0].lat,
-          lng: response.data[0].lng
+          lng: response.data[0].lng,
+          toSeward: response.data[0].toSeward
         })
-        console.log(response.data[0].lat,response.data[0].lng);
+        console.log(response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
       });
 
-  }, 1000);
+  }, 2000);
 
 
 };
