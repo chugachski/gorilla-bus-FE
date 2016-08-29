@@ -84,19 +84,31 @@ export default function DriverTest(props){
         console.log('update successful');
       });
 
-  }, 6000);
+  }, 1000);
 
   window.setInterval(function(){
       return axios.get('http://localhost:3000/shuttles/666').then(function(response){
+        console.log('PROPS:', props);
         props.setState({
           lat: response.data[0].lat,
           lng: response.data[0].lng,
           toSeward: response.data[0].toSeward
         })
+        if (props.state.toSeward) {
+          props.setState({
+            endLat: props.props.seward.lat,
+            endLng: props.props.seward.lng,
+          })
+        } else {
+            props.setState({
+              endLat: props.props.tram.lat,
+              endLng: props.props.tram.lng,
+            })
+          }
         console.log('newest coords from db:', response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
       });
 
-  }, 3000);
+  }, 500);
 
 
 };

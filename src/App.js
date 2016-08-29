@@ -7,7 +7,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <GMap />
+        <GMap
+          seward={{lat: 60.941276, lng: -149.172469}}
+          tram={{lat: 60.970598, lng: -149.096939}}
+          />
       </div>
     );
   }
