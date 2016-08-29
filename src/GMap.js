@@ -13,11 +13,12 @@ class GMap extends Component {
     this.state = {
       lat: 0,
       lng: 0,
-      stopLat: 0,
-      stopLon: 0,
+      stopLat: 60.945237,
+      stopLon: -149.169233,
       toSeward: true
     }
   }
+
 
   // handleClick(event){
   //   event.preventDefault();

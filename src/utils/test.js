@@ -81,10 +81,10 @@ export default function DriverTest(props){
         url: 'http://localhost:3000/shuttles/666',
         data: {new_shuttle_num: 666, new_lat: newPos.lat, new_lng: newPos.lng, new_dir: currentDir, new_driver_id: 2}
       }).then(function(response){
-        console.log(response);
+        console.log('update successful');
       });
 
-  }, 4000);
+  }, 6000);
 
   window.setInterval(function(){
       return axios.get('http://localhost:3000/shuttles/666').then(function(response){
@@ -93,10 +93,10 @@ export default function DriverTest(props){
           lng: response.data[0].lng,
           toSeward: response.data[0].toSeward
         })
-        console.log(response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
+        console.log('newest coords from db:', response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
       });
 
-  }, 2000);
+  }, 3000);
 
 
 };
