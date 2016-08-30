@@ -6,6 +6,7 @@ import GoogleMap from 'google-map-react';
 import './GMap.css'
 import Test from './utils/test';
 import Derp from './Derp.js';
+import ShuttleInfo from './ShuttleInfo.js';
 
 class GMap extends Component {
   constructor(props){
@@ -47,6 +48,7 @@ class GMap extends Component {
                                 <PSMarker lat={this.state.lat} lng={this.state.lng} />
           </GoogleMap>
         </div>
+        <ShuttleInfo />
         <Derp props={this.state}/>
       </div>
     );
