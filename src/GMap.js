@@ -1,11 +1,11 @@
 
-
 import React, { Component } from 'react';
-import PSMarker from './Marker.js'
+import Radium from 'radium';
+import PSMarker from './Marker.js';
 import GoogleMap from 'google-map-react';
-import './GMap.css'
 import Test from './utils/test';
 import Derp from './Derp.js';
+import ShuttleInfo from './ShuttleInfo.js';
 
 class GMap extends Component {
   constructor(props){
@@ -18,7 +18,6 @@ class GMap extends Component {
       toSeward: true
     }
   }
-
 
   // handleClick(event){
   //   event.preventDefault();
@@ -34,9 +33,16 @@ class GMap extends Component {
 
 
   render() {
+    var styles = {
+      map: {
+        height: '70vh',
+        width: '80vw'
+      }
+    };
+
     return (
-      <div className="App">
-        <div className="map">
+      <div className="App" style={styles.app}>
+        <div className="map" style={styles.map}>
           <GoogleMap bootstrapURLKeys={{
             key: "AIzaSyCip9quQ-ByPTL5EmagCH-Se898CweyyHw"
           }}
@@ -47,13 +53,15 @@ class GMap extends Component {
                                 <PSMarker lat={this.state.lat} lng={this.state.lng} />
           </GoogleMap>
         </div>
+        <ShuttleInfo />
         <Derp props={this.state}/>
       </div>
     );
   }
 }
 
-export default GMap;
+export default Radium(GMap);
+
 
 
 // <button className="coords-swap" onClick={this.handleClick.bind(this)}>Derp</button>
