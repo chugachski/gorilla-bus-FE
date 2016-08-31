@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavLink from './NavLink.js';
-import Radium, {StyleRoot} from 'radium';
+import Radium from 'radium';
 
 class App extends Component {
 
@@ -28,7 +28,7 @@ class App extends Component {
     };
 
     return (
-      <StyleRoot>
+
         <div className="App" style={styles.app}>
             <ul className="Nav" role="navigation" style={styles.nav}>
               <li style={styles.navListItem}><NavLink style={styles.navLink} to="/home" onlyActiveOnIndex >Home</NavLink></li>
@@ -38,7 +38,6 @@ class App extends Component {
             </ul>
           {this.props.children}
         </div>
-      </StyleRoot>
     );
   }
 }

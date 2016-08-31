@@ -84,7 +84,7 @@ export default function DriverTest(props){
         console.log('update successful');
       });
 
-  }, 1000);
+  }, 5000);
 
   window.setInterval(function(){
       return axios.get('http://localhost:3000/shuttles/666').then(function(response){
@@ -96,7 +96,7 @@ export default function DriverTest(props){
         console.log('newest coords from db:', response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
       });
 
-  }, 500);
+  }, 2500);
 
 
 };

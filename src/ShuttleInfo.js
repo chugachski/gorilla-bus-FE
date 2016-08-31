@@ -11,8 +11,8 @@ class ShuttleInfo extends Component {
     };
   }
 
-  toggle = () => {
-    this.setState({ isMenuOpen: !this.state.isMenuOpen })
+  open = () => {
+    this.setState({ isMenuOpen: true })
   };
 
   close = () => {
@@ -25,24 +25,6 @@ class ShuttleInfo extends Component {
 
   render(){
 
-//     @include keyframes(bounce) {
-// 	0%, 20%, 50%, 80%, 100% {
-//     @include transform(translateY(0));
-//   }
-// 	40% {
-//     @include transform(translateY(-30px));
-//   }
-// 	60% {
-//     @include transform(translateY(-15px));
-//   }
-// }
-
-    var bounceKeyframes = Radium.keyframes({
-      	'0%, 20%, 50%, 80%, 100%': { transform: '(translateY(0))' },
-      	'40%': { transform: '(translateY(-30px))'},
-      	'60%': { transform: '(translateY(-15px))'},
-    }, 'bounce');
-
     var styles= {
       dropButton: {
         background: 'transparent',
@@ -51,40 +33,41 @@ class ShuttleInfo extends Component {
         color: 'white',
         display: 'block',
         margin: 'auto',
-        ':hover': {
-          animation: 'bounceKeyframes 2s infinite',
-          animationName: 'bounceKeyframes'
-        },
+        width: '100vw'
       },
       infoBox:{
         fontSize: '30px',
         color: 'black',
         backgroundColor: 'white',
         listStyle: 'none',
-        textAlign: 'center',
+        textAlign: 'left',
         fontFamily: 'Oswald, sans-serif',
-        width: '50vw',
-        display: 'inline',
-        margin: '0'
+        padding: '20px 20px',
+        width: '40vw',
+        display: 'inline-flex',
+        justifyContent: 'center'
       },
-      menu: {
-        width: '100vw',
+      wrapper:{
+        display: 'flex',
+        justifyContent: 'center'
       }
     };
 
     let menuOptions = {
       isOpen: this.state.isMenuOpen,
       close: this.close.bind(this),
-      toggle: <button type="button" onClick={this.toggle.bind(this)} style={styles.dropButton}>&#x21D3;</button>,
+      toggle: <button className="dropButton" type="button" onMouseOver={this.open.bind(this)} onMouseLeave={this.close.bind(this)} style={styles.dropButton}>&#x21D3;</button>,
       align: 'center',
     };
 
     return(
       <DropdownMenu style={styles.menu}{...menuOptions}>
-        <div style={styles.infoBox}>ETA: Derp</div>
-        <div style={styles.infoBox}>Bus#: Derpson</div>
-      </DropdownMenu>
-    )
+        <div style={styles.wrapper}>
+          <div style={styles.infoBox} onMouseOver={this.open.bind(this)} onMouseLeave={this.close.bind(this)}>ETA: Derp</div>
+          <div style={styles.infoBox} onMouseOver={this.open.bind(this)} onMouseLeave={this.close.bind(this)}>Bus#: Derpson</div>
+        </div>
+    </DropdownMenu>
+    );
   }
 }
 

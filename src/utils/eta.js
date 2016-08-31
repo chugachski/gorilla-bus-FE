@@ -1,23 +1,71 @@
-const eta = function(routeDist, toEndShuttle, toEndUser, shuttlePos, userPos){
+import Matrix from './matrix.js';
 
-  // same dir case
-  if (toEndShuttle === toEndUser){
-      console.log('same dir')
-      // going toward end
-      if (toEndShuttle && shuttlePos < userPos){
-          console.log('shuttle behind, see you shortly')
-          console.log('up:', userPos)
+let distBusToTram = '';
+let timeBusToTram = '';
+let distStopToTram = '';
+let timeStopToTram = '';
+let distBusToSew = '';
+let timeBusToSew = '';
+let distStopToBus = '';
+let timeStopToBus = '';
+let distStopToSew = '';
+let timeStopToSew = '';
+let estETA = '';
 
-        // going toward start
-      } else{
-          console.log('shuttle ahead, I have to turn around twice')
-      }
-      // opp dir case
-    } else{
-        console.log('opp dir')
-        console.log('catch you after I turn around once')
+const eta = function(data){
+  Matrix.busSeward(data.props).then(function(res){
+    if (res.data.rows[0].elements[0].status === 'OK'){
+      distBusToSew = parseFloat(res.data.rows[0].elements[0].distance.text);
+      timeBusToSew = parseFloat(res.data.rows[0].elements[0].duration.text);
     }
+  });
 
+  Matrix.busStop(data.props).then(function(res){
+    if (res.data.rows[0].elements[0].status === 'OK') {
+      distStopToBus = parseFloat(res.data.rows[0].elements[0].distance.text);
+      timeStopToBus = parseFloat(res.data.rows[0].elements[0].duration.text);
+    }
+  });
+
+  Matrix.stopSeward(data.props).then(function(res){
+    if (res.data.rows[0].elements[0].status === 'OK') {
+      distStopToSew = parseFloat(res.data.rows[0].elements[0].distance.text);
+      timeStopToSew = parseFloat(res.data.rows[0].elements[0].duration.text);
+    }
+  });
+
+  Matrix.stopTram(data.props).then(function(res){
+    if (res.data.rows[0].elements[0].status === 'OK') {
+      distStopToTram = parseFloat(res.data.rows[0].elements[0].distance.text);
+      timeStopToTram = parseFloat(res.data.rows[0].elements[0].duration.text);
+    }
+  });
+
+  Matrix.busTram(data.props).then(function(res){
+    console.log(res);
+    if (res.data.rows[0].elements[0].status === 'OK') {
+      distBusToTram = parseFloat(res.data.rows[0].elements[0].distance.text);
+      timeBusToTram = parseFloat(res.data.rows[0].elements[0].duration.text);
+    }
+  });
+
+  if (distBusToSew > distStopToSew && data.props.toSeward === true) {
+    estETA = timeStopToBus;
+  };
+
+  if (distBusToSew < distStopToSew && data.props.toSeward === true) {
+    estETA = timeBusToSew + timeStopToSew;
+  };
+
+  if (distBusToSew > distStopToSew && data.props.toSeward === false) {
+    estETA = timeBusToTram + timeStopToTram;
+  };
+
+  if (distBusToSew < distStopToSew && data.props.toSeward === false) {
+    estETA = timeStopToBus
+  };
+
+  console.log("eta: ", estETA, " distToBus: ", distStopToBus);
 }
 
-eta(5, true, true, 2, 4);
+export default eta;
