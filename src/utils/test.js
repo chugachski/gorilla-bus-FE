@@ -84,7 +84,7 @@ export default function DriverTest(props){
         // console.log('update successful');
       });
 
-  }, 30000);
+  }, 14000);
 
   window.setInterval(function(){
       return axios.get('http://localhost:3000/shuttles/666').then(function(response){

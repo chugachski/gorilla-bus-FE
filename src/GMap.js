@@ -11,7 +11,7 @@ const stops = [
   {name: "Seward Hwy", lat: 60.941276, lng: -149.172469, distSew: 0},
   {name: "Forest Service", lat: 60.944388, lng: -149.169983, distSew: 0.2},
   {name: "Telemark", lat: 60.951004, lng: -149.164281, distSew: 0.7},
-  // {name: "Double Musky", lat: 60.965727, lng: -149.136103, distSew: 22},
+  // {name: "Double Musky", lat: 60.965727, lng: -149.136103, distSew: 2.2},
   {name: "DownTown", lat: 60.962496, lng: -149.135131, distSew: 2.2},
   {name: "Girdwood School", lat: 60.967425, lng: -149.128348, distSew: 2.6},
   {name: "Alyeska View", lat: 60.960100, lng: -149.115815, distSew: 2.7},
@@ -28,7 +28,7 @@ class GMap extends Component {
     this.state = {
       lat: 0,
       lng: 0,
-      selectedStop: stops[4],
+      selectedStop: stops[5],
       toSeward: true
     }
   }
