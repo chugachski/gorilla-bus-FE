@@ -8,13 +8,16 @@
   "dependencies": {
     "axios": "^0.14.0",
     "google-map-react": "^0.18.3",
+    "radium": "^0.18.1",
     "react": "^15.3.1",
     "react-addons-css-transition-group": "^15.3.1",
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.30.3",
     "react-dd-menu": "^1.0.7",
     "react-dom": "^15.3.1",
+    "react-fontawesome": "^1.1.0",
     "react-router": "^2.7.0",
+    "react-simple-parallax": "^0.2.6"
   },
   "scripts": {
     "start": "react-scripts start",
