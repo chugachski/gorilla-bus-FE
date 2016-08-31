@@ -4,15 +4,23 @@ const Matrix = {
 
   getTime: function(data) {
     const url = 'http://localhost:3000/distance';
-    const dataObj = {lat: data.props.lat, lng: data.props.lng, stopLat: data.props.stopLat, stopLng: data.props.stopLon};
-
-
+    const dataObj = {lat: data.lat, lng: data.lng, stopLat: data.selectedStop.lat, stopLng: data.selectedStop.lng};
     return axios({
       method: 'POST',
       url: url,
+      responseType: 'json',
       data: dataObj
-    }).then(function(res){
-      console.log(res.data);
+    });
+  },
+
+  sewardDist: function(data) {
+    const url = 'http://localhost:3000/distance';
+    const dataObj = {lat: data.lat, lng: data.lng, stopLat: 60.941276, stopLng: -149.172469};
+    return axios({
+      method: 'POST',
+      url: url,
+      responseType: 'json',
+      data: dataObj
     });
   }
 

@@ -1,23 +1,20 @@
-const eta = function(routeDist, toEndShuttle, toEndUser, shuttlePos, userPos){
+import Matrix from './matrix.js';
 
-  // same dir case
-  if (toEndShuttle === toEndUser){
-      console.log('same dir')
-      // going toward end
-      if (toEndShuttle && shuttlePos < userPos){
-          console.log('shuttle behind, see you shortly')
-          console.log('up:', userPos)
+let distToSew = '';
+let distToBus = '';
 
-        // going toward start
-      } else{
-          console.log('shuttle ahead, I have to turn around twice')
-      }
-      // opp dir case
-    } else{
-        console.log('opp dir')
-        console.log('catch you after I turn around once')
-    }
+const eta = function(data){
+  Matrix.sewardDist(data.props).then(function(res){
+    distToSew = res.data;
+    console.log("Seward Distance: ", parseInt(distToSew.rows[0].elements[0].distance.text));
+  });
+
+  Matrix.getTime(data.props).then(function(res){
+    distToBus = res.data;
+    console.log("Bus Distance: ", parseInt(distToBus.rows[0].elements[0].distance.text));
+  });
+  console.log(distToSew);
 
 }
 
-eta(5, true, true, 2, 4);
+export default eta;

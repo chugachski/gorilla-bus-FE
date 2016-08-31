@@ -42,7 +42,7 @@ export default function DriverTest(props){
   const driving = function(){
     if (!enRoute.length){ // if enRoute array is empty
       enRoute = new Route() // reassign enRoute
-      console.log('enroute:', enRoute)
+      // console.log('enroute:', enRoute)
 
       if (toSeward === true){
         toSeward = false;
@@ -51,7 +51,7 @@ export default function DriverTest(props){
       }
     };
     if (toSeward === false && enRoute){
-      console.log('enroute:', enRoute.length)
+      // console.log('enroute:', enRoute.length)
       // return enRoute.shift();
       return {
         coords: enRoute.shift(),
@@ -61,7 +61,7 @@ export default function DriverTest(props){
     };
     if (toSeward === true && enRoute){
       // console.log(enRoute.pop())
-      console.log('enroute:', enRoute.length)
+      // console.log('enroute:', enRoute.length)
       // return enRoute.pop();
       return {
         coords: enRoute.pop(),
@@ -81,10 +81,10 @@ export default function DriverTest(props){
         url: 'http://localhost:3000/shuttles/666',
         data: {new_shuttle_num: 666, new_lat: newPos.lat, new_lng: newPos.lng, new_dir: currentDir, new_driver_id: 2}
       }).then(function(response){
-        console.log('update successful');
+        // console.log('update successful');
       });
 
-  }, 1000);
+  }, 30000);
 
   window.setInterval(function(){
       return axios.get('http://localhost:3000/shuttles/666').then(function(response){
@@ -93,10 +93,10 @@ export default function DriverTest(props){
           lng: response.data[0].lng,
           toSeward: response.data[0].toSeward
         })
-        console.log('newest coords from db:', response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
+        // console.log('newest coords from db:', response.data[0].lat, response.data[0].lng, response.data[0].toSeward);
       });
 
-  }, 500);
+  }, 15000);
 
 
 };
