@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavLink from './NavLink.js';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
 
@@ -10,34 +11,36 @@ class App extends Component {
         padding: '.3em 0 .3em 0',
         width: '100%',
         textAlign: 'center',
+        fontFamily: 'Oswald, sans-serif',
       },
       navListItem: {
         margin: '0',
-        padding: '0',
-        display: 'inline'
+        padding: '.5em .4em .5em .4em',
+        display: 'inline',
       },
       navLink: {
         margin: '0',
-        padding: '.3em .4em .3em .4em',
         textDecoration: 'none',
         fontWeight: 'bold',
-        fontSize: 'medium',
-        color: 'black'
+        fontSize: '20px',
+        color: 'white'
       }
     };
 
     return (
-      <div className="App">
-        <ul className="Nav" role="navigation" style={styles.nav}>
-          <li style={styles.navListItem}><NavLink style={styles.navLink} to="/home" onlyActiveOnIndex >Home</NavLink></li>
-          <li style={styles.navListItem}><NavLink style={styles.navLink} to="/help">Help</NavLink></li>
-          <li style={styles.navListItem}><NavLink style={styles.navLink} to="/contact">Contact</NavLink></li>
-          <li style={styles.navListItem}><NavLink style={styles.navLink} to="/about">About</NavLink></li>
-        </ul>
-        {this.props.children}
-      </div>
+      <StyleRoot>
+        <div className="App" style={styles.app}>
+            <ul className="Nav" role="navigation" style={styles.nav}>
+              <li style={styles.navListItem}><NavLink style={styles.navLink} to="/home" onlyActiveOnIndex >Home</NavLink></li>
+              <li style={styles.navListItem}><NavLink style={styles.navLink} to="/help">Help</NavLink></li>
+              <li style={styles.navListItem}><NavLink style={styles.navLink} to="/contact">Contact</NavLink></li>
+              <li style={styles.navListItem}><NavLink style={styles.navLink} to="/about">About</NavLink></li>
+            </ul>
+          {this.props.children}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);

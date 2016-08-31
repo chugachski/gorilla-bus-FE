@@ -19,14 +19,6 @@ class GMap extends Component {
     }
   }
 
-  // handleClick(event){
-  //   event.preventDefault();
-  //   this.setState({
-  //     lat: 40.7398909,
-  //     lng: -73.989497
-  //   })
-  // }
-
   componentDidMount(){
     Test(this)
   }
@@ -36,14 +28,20 @@ class GMap extends Component {
     var styles = {
       map: {
         height: '70vh',
-        width: '80vw'
+        width: '80vw',
+        marginRight: '10vw',
+        marginLeft: '10vw',
+        marginTop: '30px',
+        border: '5px solid #155F7C',
+        boxShadow: '0 0 10px #155F7C',
+        borderRadius: '1px'
       }
     };
 
     return (
       <div className="App" style={styles.app}>
         <div className="map" style={styles.map}>
-          <GoogleMap bootstrapURLKeys={{
+        <GoogleMap bootstrapURLKeys={{
             key: "AIzaSyCip9quQ-ByPTL5EmagCH-Se898CweyyHw"
           }}
             center={{lat:60.960571, lng: -149.141023}}
@@ -53,7 +51,7 @@ class GMap extends Component {
                                 <PSMarker lat={this.state.lat} lng={this.state.lng} />
           </GoogleMap>
         </div>
-        <ShuttleInfo />
+            <ShuttleInfo />
         <Derp props={this.state}/>
       </div>
     );
