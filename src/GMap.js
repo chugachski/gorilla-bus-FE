@@ -57,7 +57,7 @@ class GMap extends Component {
       <div className="App" style={styles.app}>
         <div className="map" style={styles.map}>
         <GoogleMap bootstrapURLKeys={{
-            key: "AIzaSyCip9quQ-ByPTL5EmagCH-Se898CweyyHw"
+            key: "AIzaSyCG4lH15tIo_7aAL_ds9JLGBueqALlJ-ms"
           }}
             center={{lat:60.960571, lng: -149.141023}}
             zoom={13}

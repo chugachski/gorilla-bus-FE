@@ -36,7 +36,7 @@ const Matrix = {
   },
 
   busSeward: function(data) {
-    const url = 'http://localhost:3000/distance';
+    const url = 'https://serene-sierra-23458.herokuapp.com/distance';
     const dataObj = {lat: data.lat, lng: data.lng, stopLat: 60.941276, stopLng: -149.172469};
     return axios({
       method: 'POST',
@@ -47,7 +47,7 @@ const Matrix = {
   },
 
   stopSeward: function(data) {
-    const url = 'http://localhost:3000/distance';
+    const url = 'https://serene-sierra-23458.herokuapp.com/distance';
     const dataObj = {lat: data.selectedStop.lat, lng: data.selectedStop.lng, stopLat: 60.941276, stopLng: -149.172469};
     return axios({
       method: 'POST',

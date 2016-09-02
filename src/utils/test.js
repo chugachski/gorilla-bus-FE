@@ -78,7 +78,7 @@ export default function DriverTest(props){
 
       return axios({
         method: 'PUT',
-        url: 'http://localhost:3000/shuttles/666',
+        url: 'https://serene-sierra-23458.herokuapp.com/shuttles/666',
         data: {new_shuttle_num: 666, new_lat: newPos.lat, new_lng: newPos.lng, new_dir: currentDir, new_driver_id: 2}
       }).then(function(response){
         console.log('update successful');
@@ -87,7 +87,7 @@ export default function DriverTest(props){
   }, 5000);
 
   window.setInterval(function(){
-      return axios.get('http://localhost:3000/shuttles/666').then(function(response){
+      return axios.get('https://serene-sierra-23458.herokuapp.com/shuttles/666').then(function(response){
         props.setState({
           lat: response.data[0].lat,
           lng: response.data[0].lng,
